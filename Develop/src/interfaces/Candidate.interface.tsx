@@ -9,4 +9,8 @@ export interface Candidate {
   experience: number;
   education: string;
   resume: string;
+  bio?: string;
+  avatar_url: string;
+  html_url: string;
+  company?: string;
 }
