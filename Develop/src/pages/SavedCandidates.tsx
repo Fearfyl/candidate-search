@@ -25,16 +25,19 @@ const SavedCandidates: React.FC = () => {
   const getFilteredCandidates = () => {
     return savedCandidates.filter(candidate =>
       ['name', 'location', 'email', 'company', 'login'].some(key =>
-        (candidate[key as keyof Candidate]?.toLowerCase() ?? '').includes(filterText.toLowerCase())
+        (typeof candidate[key as keyof Candidate] === 'string' ? (candidate[key as keyof Candidate] as string).toLowerCase() : '').includes(filterText.toLowerCase())
       )
     );
   };
 
   const getSortedCandidates = (candidates: Candidate[]) => {
+    const key = sortKey as keyof Candidate;
     return candidates.sort((a, b) => {
-      const aValue = a[sortKey as keyof Candidate] ?? '';
-      const bValue = b[sortKey as keyof Candidate] ?? '';
-      return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
+      const aValue = a[key] ?? '';
+      const bValue = b[key] ?? '';
+      if (aValue < bValue) return -1;
+      if (aValue > bValue) return 1;
+      return 0;
     });
   };
 
@@ -44,30 +47,9 @@ const SavedCandidates: React.FC = () => {
     <div>
       <h1>Potential Candidates</h1>
       <div className="filter-sort-container">
-        <label className="filter-label">
-  const getSortedCandidates = (candidates: Candidate[]) => {
-    const key = sortKey as keyof Candidate; // Determine the key to sort by
-    return candidates.sort((a, b) => {
-      const aValue = a[key] ?? ''; // Get the value of the key for candidate a
-      const bValue = b[key] ?? ''; // Get the value of the key for candidate b
-      if (aValue < bValue) return -1; // If a's value is less than b's value, sort a before b
-      if (aValue > bValue) return 1; // If a's value is greater than b's value, sort a after b
-      return 0; // If values are equal, maintain original order
-    });
-  };
-
-  // Get the filtered and sorted list of candidates to be displayed
-  const displayedCandidates = getSortedCandidates(getFilteredCandidates());
-
-  return (
-    <div>
-      <h1>Potential Candidates</h1>
-      <div className="filter-sort-container">
-        {/* Filter input field */}
         <label className="filter-label">
           Filter: <input type="text" value={filterText} onChange={handleFilter} className="filter-input" />
         </label>
-        {/* Sort dropdown */}
         <label className="sort-label">
           Sort by:
           <select value={sortKey} onChange={(e) => handleSort(e.target.value)}>
@@ -78,11 +60,9 @@ const SavedCandidates: React.FC = () => {
           </select>
         </label>
       </div>
-      {/* Display message if no candidates are available */}
       {displayedCandidates.length === 0 ? (
         <p>No candidates have been accepted.</p>
       ) : (
-        // Display table of candidates
         <table className="candidates-table">
           <thead>
             <tr>

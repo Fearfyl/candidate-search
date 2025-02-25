@@ -63,11 +63,11 @@ const CandidateSearch = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <div>
           {candidates.length > 0 && currentIndex < candidates.length ? (
             <div className="candidate-container">
               <CandidateCard key={candidates[currentIndex].id} candidate={candidates[currentIndex]} />
-              <div className="button-container"></div>
+              <div className="button-container">
                 <button className="save-button" onClick={handleSave}>+</button>
                 <button className="skip-button" onClick={handleSkip}>-</button>
               </div>
@@ -75,7 +75,7 @@ const CandidateSearch = () => {
           ) : (
             <p>No more candidates available.</p>
           )}
-        </ul>
+        </div>
       )}
     </div>
   );
