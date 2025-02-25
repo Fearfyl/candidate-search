@@ -1,0 +1,37 @@
+/* Navigation bar styles */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    z-index: 1000;
+}
+
+/* Unordered list inside the navigation bar */
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Individual navigation item */
+.nav-item {
+    margin: 0 15px;
+}
+
+/* Navigation link styles */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+/* Navigation link hover effect */
+.nav-link:hover {
+    color: #ccc;
+}
