@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import CandidateCard from '../components/CandidateCard';
 import Candidate from '../interfaces/Candidate.interface';
-import '../styles/CandidateSearch.css';
+
 
 const CandidateSearch = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
