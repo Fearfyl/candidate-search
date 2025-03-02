@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Candidate from '../interfaces/Candidate.interface';
-import '../styles/SavedCandidates.css';
+import '../style/SavedCandidate.css';
 
 const SavedCandidates: React.FC = () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
