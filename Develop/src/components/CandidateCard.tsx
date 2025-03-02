@@ -1,6 +1,6 @@
 import React from 'react';
 import Candidate from '../interfaces/Candidate.interface';
-import '../styles/CandidateCard.css';
+import '../style/CandidateCard.css';
 
 interface CandidateCardProps {
     candidate: Candidate;
